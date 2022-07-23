@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 import './App.css';
 
 class App extends React.Component {
@@ -42,13 +45,20 @@ class App extends React.Component {
               <input type="text" name="name" onChange={this.handleChange} value={this.state.newElement}/>
             </p>
             <p>
-              <button type="button" onClick={this.handleSubmit} >Ajouter</button>
+              <Button variant="secondary" onClick={this.handleSubmit} >Ajouter</Button>
             </p>
           </form>
         </div>
-        <div>
+        <div className="list">
           {this.props.myList.myList.map((element) => (
-              <div key={element.id}>{element.value}<button onClick={this.handleDelete.bind(this, element.id)}>delete</button></div>
+            <Card className='card' style={{width: '15rem'}} key={element.id}>
+              <Card.Body className='element'>
+                <Card.Text className='text'>
+                  {element.value}
+                </Card.Text>
+              </Card.Body>
+              <Button variant="primary" onClick={this.handleDelete.bind(this, element.id)}>delete</Button>
+            </Card>
           ))}
         </div>
 
